@@ -1,0 +1,180 @@
+---
+import Card from './Card.astro'
+import CodeCompo from './CodeCompo.astro'
+const PETICIONES = [
+    {   
+        href: 'https://fakeapigames.4.us-1.fl0.io/videoGames',
+        title: 'GET ALL VIDEO GAMES 🚀',
+        body: 'This endpoint is used to retrieve all available video games',
+        code: "fetch('http://localhost:1234/videoGames').then(response => response.json()).then(data => console.log(data));",
+        code2:'',
+        id: 'get-All'
+            
+    },
+    {
+        href: 'https://fakeapigames.4.us-1.fl0.io/videoGames/publishers',
+        title: 'GET ALL PUBLISHERS 📢 AND GET ALL DEVELOPERS 👨‍💻',
+        body: 'These endpoints are used to retrieve the list of video game publishers and the list of video game developers.',
+        code: "fetch('https://fakeapigames.4.us-1.fl0.io/videoGames/publishers').then(response => response.json()).then(data => console.log(data));",
+        code2:"fetch('https://fakeapigames.4.us-1.fl0.io/videoGames/developers').then(response => response.json()).then(data => console.log(data));",
+        id: 'Get-All-Pub-and-Dev'
+    },
+    {
+        href: 'https://fakeapigames.4.us-1.fl0.io/videoGames/56514712-a2d5-44a9-9b28-5bd930b487fe',
+        title: 'GET BY ID 🔑',
+        body: 'This endpoint is used to retrieve details about a specific video game based on its ID.',
+        code: "const gameId = '56514712-a2d5-44a9-9b28-5bd930b487fe';\n // Replace with the ID of the video game you want to retrieve;\n fetch(`https://fakeapigames.4.us-1.fl0.io/videoGames/${gameId}`).then(response => response.json()).then(data => console.log(data));",
+        code2:"",
+        id: 'Get-by-id'
+    },
+    {
+        href: 'https://fakeapigames.4.us-1.fl0.io/videoGames' ,
+        title: 'POST NEW GAME 🆕🎮',
+        body: '',
+        code: "const newGame =\n{\n// Video game title (String)\ntitle: 'ARK: Survival Of The Fittest',\n// Array of genre IDs (Array of positive integers)\ngenres: [1, 2, 3, 4, 5, 6],\n// ID of the publisher (Positive integer)\n publisher: 1,\n// Description of the video game (String)\ndescription: 'ARK: Survival of the Fittest is a Multiplayer Online Survival Arena (MOSA) game that pits as many as 72 combatants against one another in the struggle for survival in a harsh, changing environment packed with deadly creatures, 'Evolution Events,' and other players.',\n// ID of the developer (Positive integer)\ndeveloper: 1,\n// URL of the cover image (String with a valid URL)\ncoverImage: 'https://steamcdn-a.akamaihd.net/steam/apps/407530/header.jpg?t=1567712233'\n}\nfetch('https://fakeapigames.4.us-1.fl0.io/videoGames', {\nmethod: 'POST',\nheaders: {\n'Content-Type': 'application/json',\n},\nbody: JSON.stringify(newGame),\n})\n.then(response => {\nif (!response.ok) {\nthrow new Error(`Network error - ${response.status}`);\n}\nreturn response.json();\n})\n.then(data => {\nconsole.log('New game created:', data);\n})\n.catch(error => {\nconsole.error('Error creating the new game:', error);\n});",
+        code2:"",
+        id:'Post-new-game'
+    },
+    {
+        href: 'https://fakeapigames.4.us-1.fl0.io/videoGames/developers' ,
+        title: 'POST NEW DEV AND PUB🆕🧑‍💻',
+        body: '',
+        code: "//New Developer\n"+"const newDeveloper = {\n" +
+            "  name: \"Diego Amachi\",\n" +
+            "};\n" +
+            "\n" +
+            "fetch('http://localhost:1234/videoGames/developers', {\n" +
+            "  method: 'POST',\n" +
+            "  headers: {\n" +
+            "    'Content-Type': 'application/json',\n" +
+            "  },\n" +
+            "  body: JSON.stringify(newDeveloper),\n" +
+            "})\n" +
+            "  .then(response => {\n" +
+            "    if (!response.ok) {\n" +
+            "      throw new Error(`Network error - ${response.status}`);\n" +
+            "    }\n" +
+            "    return response.json();\n" +
+            "  })\n" +
+            "  .then(data => {\n" +
+            "    console.log('New developer created:', data);\n" +
+            "  })\n" +
+            "  .catch(error => {\n" +
+            "    console.error('Error creating the new developer:', error);\n" +
+            "  });",
+                    code2:"//New Publisher\n"+"const newPublisher = {\n" +
+            "  name: \"Editor's Name\",\n" +
+            "};\n" +
+            "\n" +
+            "fetch('http://localhost:1234/videoGames/publishers', {\n" +
+            "  method: 'POST',\n" +
+            "  headers: {\n" +
+            "    'Content-Type': 'application/json',\n" +
+            "  },\n" +
+            "  body: JSON.stringify(newPublisher),\n" +
+            "})\n" +
+            "  .then(response => {\n" +
+            "    if (!response.ok) {\n" +
+            "      throw new Error(`Network error - ${response.status}`);\n" +
+            "    }\n" +
+            "    return response.json();\n" +
+            "  })\n" +
+            "  .then(data => {\n" +
+            "    console.log('New publisher created:', data);\n" +
+            "  })\n" +
+            "  .catch(error => {\n" +
+            "    console.error('Error creating the new publisher:', error);\n" +
+            "  });",
+        id:'Post-new-Dev-and-Pub'
+    },
+    {
+        href: 'https://fakeapigames.4.us-1.fl0.io/videoGames/56514712-a2d5-44a9-9b28-5bd930b487fe' ,
+        title: 'UPGRADE VIDEO GAME BY ID 🕹️',
+        body: '',
+        code:   "const gameId = '4e2bbcf5-b9ea-40ff-97fe-b0d3f11bc9a6';\n" +
+                "\n" +
+                "const patchData = {\n" +
+                "  publisher: 4,\n" +
+                "};\n" +
+                "\n" +
+                "fetch(`http://localhost:1234/videoGames/${gameId}`, {\n" +
+                "  method: 'PATCH',\n" +
+                "  headers: {\n" +
+                "    'Content-Type': 'application/json',\n" +
+                "  },\n" +
+                "  body: JSON.stringify(patchData),\n" +
+                "})\n" +
+                "  .then(response => {\n" +
+                "    if (!response.ok) {\n" +
+                "      throw new Error(`Network error - ${response.status}`);\n" +
+                "    }\n" +
+                "    return response.json();\n" +
+                "  })\n" +
+                "  .then(data => {\n" +
+                "    console.log('Upgrade successful:', data);\n" +
+                "  })\n" +
+                "  .catch(error => {\n" +
+                "    console.error('Error performing the upgrade:', error);\n" +
+                "  });",
+        id:'upgrade'
+    },
+    {
+        href: 'https://fakeapigames.4.us-1.fl0.io/videoGames/56514712-a2d5-44a9-9b28-5bd930b487fe' ,
+        title: 'DELETE VIDEO GAME BY ID ❌',
+        body: '',
+        code:   "const gameId = '0af43d92-81c5-4622-87bb-b6c17beec22b';\n" +
+                "\n" +
+                "fetch(`http://localhost:1234/videoGames/${gameId}`, {\n" +
+                "  method: 'DELETE',\n" +
+                "})\n" +
+                "  .then(response => {\n" +
+                "    if (!response.ok) {\n" +
+                "      throw new Error(`Network error - ${response.status}`);\n" +
+                "    }\n" +
+                "    console.log('Deletion successful');\n" +
+                "  })\n" +
+                "  .catch(error => {\n" +
+                "    console.error('Error performing the deletion:', error);\n" +
+                "  });",
+        id:'delete'
+    },
+    {
+        href: 'https://fakeapigames.4.us-1.fl0.io/videoGames?genre=family' ,
+        title: 'FILTER BY GENRE 🎮✨',
+        body: '',
+        code: "https://fakeapigames.4.us-1.fl0.io/videoGames?genre=family",
+        id:'Genre'
+    },
+    {
+        href: 'https://fakeapigames.4.us-1.fl0.io/videoGames?developer=Crate%20Entertainment' ,
+        title: 'FILTER BY DEVELOPER 👨‍💻✨',
+        body: '',
+        code: "https://fakeapigames.4.us-1.fl0.io/videoGames?developer=Crate%20Entertainment",
+        id:'Developer'
+    },
+    {
+        href: 'https://fakeapigames.4.us-1.fl0.io/videoGames?publisher=UBISOfT' ,
+        title: 'FILTER BY PUBLISHER 📢✨',
+        body: '',
+        code: "https://fakeapigames.4.us-1.fl0.io/videoGames?publisher=UBISOfT",
+        id:'Publisher'
+    }
+]
+---
+<section class="flex  flex-col gap-4" >
+        {
+            PETICIONES.map((card)=>(
+                <Card
+                id={card.id}
+                href={card.href}
+                title={card.title}
+                body={card.body}
+                >
+                    <CodeCompo
+                    code2={card.code2?card.code2:false}
+                    code1={card.code}
+                    />
+                </Card>
+            ))
+        }
+</section>
